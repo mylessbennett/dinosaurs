@@ -1,0 +1,67 @@
+1. dinosaurs=# SELECT COUNT(id) FROM dinos;                                         count
+-------
+   331
+(1 row)
+
+2. dinosaurs=# SELECT name FROM dinos WHERE period='Jurassic';
+...
+Apatosaurus
+Lapparentosaurus
+Hesperosaurus
+Camptosaurus
+Aardonyx
+Archaeopteryx
+(92 rows)
+
+3. dinosaurs=# SELECT SUM(length) FROM dinos WHERE period='Cretaceous';
+   sum
+---------
+ 1366.45
+(1 row)
+
+4. dinosaurs=# SELECT name FROM dinos WHERE period= 'Jurassic' or period='Cretaceous' ORDER BY name ASC;
+          name
+-------------------------
+ Aardonyx
+ Abelisaurus
+ Achelousaurus
+ Achillobator
+ Acrocanthosaurus
+ ...
+ Yingshanosaurus
+ Yinlong
+ Yuanmousaurus
+ Yunnanosaurus
+ Zalmoxes
+ Zephyrosaurus
+ Zuniceratops
+(310 rows)
+
+5. dinosaurs=# SELECT name FROM dinos WHERE t_order='Saurischia' AND diet='Herbivorous';
+        name
+---------------------
+ Yuanmousaurus
+ Yimenosaurus
+ Vulcanodon
+ Supersaurus
+ Sonidosaurus
+ ...
+ Lapparentosaurus
+Aardonyx
+Argentinosaurus
+Aegyptosaurus
+(68 rows)
+
+6. dinosaurs=# UPDATE dinos SET name='Shortie' WHERE length=(SELECT MIN(length) FROM dinos);
+UPDATE 1
+dinosaurs=# SELECT name FROM dinos WHERE length=(SELECT MIN(length) FROM dinos);
+  name
+---------
+ Shortie
+(1 row)
+
+7. dinosaurs=# SELECT name FROM dinos WHERE name LIKE 'Aa%' ORDER BY name ASC;
+   name
+----------
+ Aardonyx
+(1 row)
